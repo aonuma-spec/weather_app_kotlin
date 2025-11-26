@@ -26,11 +26,21 @@ class weather_detail : AppCompatActivity() {
         val tvTemperatureDifference: TextView = findViewById(R.id.tvTemperatureDifference)
 
         // 2: 渡された値を取り出す
-        val placeVal = intent.getStringExtra("SELECTED_PLACE")
+        val placeVal = intent.getStringExtra("SELECTED_PLACE_VALUE")
 
-        placeTitle.text = placeVal
-        tvTemperatureDifference.text = placeVal + "と各地の気温差について"
-//                intent.putExtra("SELECTED_PLACE", selectedPlace)
+        val displayMessage = when (placeVal) {
+            "tokyo" -> {"東京"}
+            "sapporo" -> {"札幌"}
+            "sendai" -> {"仙台"}
+            "niigata" -> {"新潟"}
+            "tochigi" -> {"栃木"}
+            "osaka" -> {"大阪"}
+            "kagoshima" -> {"鹿児島"}
+            "Okinawa,jp" -> {"沖縄"}
+            else -> {"不明"}
+        }
 
+        placeTitle.text = displayMessage
+        tvTemperatureDifference.text = displayMessage + "と各地の気温差について"
     }
 }
