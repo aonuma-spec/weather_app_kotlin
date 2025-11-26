@@ -36,7 +36,7 @@ class weather_detail : AppCompatActivity() {
             "tochigi" -> {"栃木"}
             "osaka" -> {"大阪"}
             "kagoshima" -> {"鹿児島"}
-            "Okinawa,jp" -> {"沖縄"}
+            "okinawa" -> {"沖縄"}
             else -> {"不明"}
         }
 
