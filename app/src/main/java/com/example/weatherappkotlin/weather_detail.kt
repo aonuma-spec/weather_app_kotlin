@@ -1,31 +1,21 @@
 package com.example.weatherappkotlin
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class weather_detail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_weather_detail)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // 1. viewの取得
-        val btnWeatherDetail : Button = findViewById(R.id.btnWeatherDetail)
-
-        // 2: ボタン押下で天気詳細画面へ移動
-        btnWeatherDetail.setOnClickListener {
-            val intent = Intent(this, weather_detail::class.java)
-            startActivity(intent)
-        }
     }
 }
