@@ -1,14 +1,4 @@
 <resources>
     <string name="app_name">天気アプリ</string>
 
-    <string-array name="place_list">
-        <item>東京</item>
-        <item>札幌</item>
-        <item>仙台</item>
-        <item>新潟</item>
-        <item>栃木</item>
-        <item>大阪</item>
-        <item>鹿児島</item>
-        <item>沖縄</item>
-    </string-array>
 </resources>

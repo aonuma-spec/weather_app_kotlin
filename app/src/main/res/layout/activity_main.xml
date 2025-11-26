@@ -8,10 +8,9 @@
     tools:context=".MainActivity">
 
 
-    <!-- 画像を表示 -->
-
+    <!-- 天気アプリのタイトル -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvTitle"
         android:layout_width="420dp"
         android:layout_height="49dp"
         android:layout_marginTop="16dp"
@@ -25,6 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 画像を表示 -->
     <ImageView
         android:id="@+id/img_otenki"
         android:layout_width="232dp"
@@ -34,8 +34,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
+    <!-- 選択地域のタイトル -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -47,15 +48,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_otenki" />
 
+    <!-- 選択地域の一覧 -->
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/placeSpinner"
         android:layout_width="115dp"
         android:layout_height="27dp"
-        android:entries="@array/place_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <!-- 選択地域の送信ボタン -->
     <Button
         android:id="@+id/btnWeatherDetail"
         android:layout_width="wrap_content"
