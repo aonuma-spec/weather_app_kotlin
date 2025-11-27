@@ -136,6 +136,9 @@ class MainActivity : AppCompatActivity() {
         return response
     }
 
+    /**
+     * 天気詳細ページ移動
+     */
     private fun nextDetailPage(weatherJsonData: String) {
 
         // 値受け渡しに必要な値を設定

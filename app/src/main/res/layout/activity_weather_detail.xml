@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_otenki"
+        android:id="@+id/imgWeather"
         android:layout_width="258dp"
         android:layout_height="165dp"
         android:src="@drawable/mark_tenki_hare"
@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_otenki" />
+        app:layout_constraintTop_toBottomOf="@+id/imgWeather" />
 
     <TextView
         android:id="@+id/tvTemp"
@@ -98,7 +98,7 @@
         android:layout_marginTop="24dp"
         android:text="-"
         app:layout_constraintStart_toEndOf="@+id/tvWeather"
-        app:layout_constraintTop_toBottomOf="@+id/img_otenki" />
+        app:layout_constraintTop_toBottomOf="@+id/imgWeather" />
 
     <TextView
         android:id="@+id/tvTempData"

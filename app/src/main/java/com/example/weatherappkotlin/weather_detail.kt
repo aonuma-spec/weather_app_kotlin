@@ -8,9 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.weatherappkotlin.databinding.ActivityWeatherDetailBinding
 import org.json.JSONObject
 
 class weather_detail : AppCompatActivity() {
+    // binding変数を設定
+    private lateinit var binding: ActivityWeatherDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,16 +25,17 @@ class weather_detail : AppCompatActivity() {
             insets
         }
 
+        // bindingインスタンスを初期化
+        binding = ActivityWeatherDetailBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
         /**
          * 選択された地域を表示
          */
         // 1: viewを取得
         val tvPlace: TextView = findViewById(R.id.tvPlace)
-        val tvDetail: TextView = findViewById(R.id.tvDetail)
-        val img_otenki: ImageView = findViewById(R.id.img_otenki)
-        val tvWeather: TextView = findViewById(R.id.tvWeather)
-        val tvTemp: TextView = findViewById(R.id.tvTemp)
-        val tvHumidity: TextView = findViewById(R.id.tvHumidity)
+        val imgWeatherView: ImageView = binding.imgWeather
         val tvWeatherData: TextView = findViewById(R.id.tvWeatherData)
         val tvTempData: TextView = findViewById(R.id.tvTempData)
         val tvHumidityData: TextView = findViewById(R.id.tvHumidityData)
@@ -50,7 +55,8 @@ class weather_detail : AppCompatActivity() {
         // weather
         val weatherJsonArray = jsonObj.getJSONArray("weather")
         val weatherJson = weatherJsonArray.getJSONObject(0)
-        val jsonWeather = weatherJson.getString("description")
+        val jsonWeatherMain = weatherJson.getString("main")
+        val jsonWeatherDescription = weatherJson.getString("description")
 
         // main
         val mainJson = jsonObj.getJSONObject("main")
@@ -60,7 +66,15 @@ class weather_detail : AppCompatActivity() {
         val jsonTempMaxDiff = mainJson.getString("temp") // 各地との平均が高い場所との気温差（仮）
 
         tvPlace.text = jsonPlace // 地域名
-        tvWeatherData.text = jsonWeather // 天気
+        val imageResourceId = when(jsonWeatherMain) {
+            "Clear" -> R.drawable.mark_tenki_hare
+            "Clouds" -> R.drawable.mark_tenki_kumori
+            "Rain" -> R.drawable.mark_tenki_umbrella
+            "Snow" -> R.drawable.tenki_snow
+            else -> R.drawable.mark_tenki_kumori
+        }
+        imgWeatherView.setImageResource(imageResourceId)
+        tvWeatherData.text = jsonWeatherDescription // 天気
         tvTempData.text = jsonTemp + " 度" //温度
         tvHumidityData.text = jsonHumidity + " %" // 湿度
         tvTemperatureDifference.text = jsonPlace + "と各地の気温差について" // 地域気温差タイトル
