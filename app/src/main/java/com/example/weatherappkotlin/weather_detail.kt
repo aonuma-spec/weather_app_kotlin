@@ -1,11 +1,13 @@
 package com.example.weatherappkotlin
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.json.JSONObject
 
 class weather_detail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,8 +20,8 @@ class weather_detail : AppCompatActivity() {
             insets
         }
 
-        /*
-        選択された地域を表示
+        /**
+         * 選択された地域を表示
          */
         // 1: viewを取得
         val placeTitle: TextView = findViewById(R.id.tvPlace)
@@ -27,20 +29,11 @@ class weather_detail : AppCompatActivity() {
 
         // 2: 渡された値を取り出す
         val placeVal = intent.getStringExtra("SELECTED_PLACE_VALUE")
+        // JSONオブジェクトを生成
+        val jsonObj = JSONObject(placeVal?:"")
+        val cityName = jsonObj.getString("name")
 
-        val displayMessage = when (placeVal) {
-            "tokyo" -> {"東京"}
-            "sapporo" -> {"札幌"}
-            "sendai" -> {"仙台"}
-            "niigata" -> {"新潟"}
-            "tochigi" -> {"栃木"}
-            "osaka" -> {"大阪"}
-            "kagoshima" -> {"鹿児島"}
-            "okinawa" -> {"沖縄"}
-            else -> {"不明"}
-        }
-
-        placeTitle.text = displayMessage
-        tvTemperatureDifference.text = displayMessage + "と各地の気温差について"
+        placeTitle.text = cityName
+        tvTemperatureDifference.text = cityName + "と各地の気温差について"
     }
 }

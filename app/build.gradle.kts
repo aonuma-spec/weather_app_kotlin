@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -26,6 +29,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            val apiKey = properties["WEATHER_API_KEY"] as String? ?: ""
+            buildConfigField("String", "WEATHER_API_KEY", "\"$apiKey\"")
+        }
+        debug {
+            val apiKey = properties["WEATHER_API_KEY"] as String? ?: ""
+            buildConfigField("String", "WEATHER_API_KEY", "\"$apiKey\"")
         }
     }
     compileOptions {
@@ -37,10 +46,19 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    val properties = Properties()
+    val propertiesFile = project.rootProject.file("gradle.properties") // または "local.properties"
+    if (propertiesFile.exists()) {
+        properties.load(FileInputStream(propertiesFile)) // または propertiesFile.inputStream()
     }
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

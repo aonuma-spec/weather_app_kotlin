@@ -3,15 +3,23 @@ package com.example.weatherappkotlin
 import CustomSpinnerAdapter
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.weatherappkotlin.data.model.Place
 import com.example.weatherappkotlin.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONException
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,8 +41,13 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        /*
-        地域一覧
+        // 天気情報取得APIキー
+        val weatherApiKey: String = BuildConfig.WEATHER_API_KEY
+        // URL
+        val mainUrl = "https://api.openweathermap.org/data/2.5/weather?appid="
+
+        /**
+         * 地域一覧
          */
         //地域一覧の設定値
         val spinner: Spinner = findViewById(R.id.placeSpinner)
@@ -55,8 +68,8 @@ class MainActivity : AppCompatActivity() {
             CustomSpinnerAdapter(this, android.R.layout.simple_spinner_dropdown_item, placeList)
         binding.placeSpinner.adapter = placeAdapter
 
-        /*
-        送信ボタン押下時処理
+        /**
+         * 送信ボタン押下時処理
          */
         // 1. viewの取得
         val btnWeatherDetail: Button = findViewById(R.id.btnWeatherDetail)
@@ -70,12 +83,68 @@ class MainActivity : AppCompatActivity() {
             // 表示名のvalueを取得
             val valueToSend = selectedPlaceObject.value
 
-            // 値受け渡しに必要な値を設定
-            val intent = Intent(this, weather_detail::class.java)
-            intent.putExtra("SELECTED_PLACE_VALUE", valueToSend)
+            // API実行用のURLを設定
+            val weatherUrl = "${mainUrl}${weatherApiKey}&lang=ja&units=metric&q=${valueToSend}"
 
-            // 画面遷移
-            startActivity(intent)
+            // API実行
+            weatherTask(weatherUrl)
         }
     }
+
+    /**
+     * 天気情報取得API実行
+     */
+    private fun weatherTask(weatherUrl: String) {
+        var weatherJsonData: String = ""
+        lifecycleScope.launch {
+            // HTTP通信
+            weatherJsonData = weatherBackgroundTask(weatherUrl)
+
+            // 天気詳細画面へ移動：HTTP通信を受けてお天気データ(json)を表示
+            nextDetailPage(weatherJsonData)
+        }
+    }
+
+    /**
+     * HTTP通信 : ワーカースレッドの中身
+     */
+    private suspend fun weatherBackgroundTask(weatherUrl: String): String {
+
+        // スレッドを分離し、IO（ワーカースレッド）で実行
+        val response = withContext(Dispatchers.IO) {
+
+            // 天気情報サービスから受信した結果情報
+            var httpResult = ""
+
+            try {
+                val urlObj = URL(weatherUrl)
+
+                // テキストファイルを読み込み、URLを展開
+                val br = BufferedReader(InputStreamReader(urlObj.openStream()))
+                httpResult = br.readText()
+            } catch (e: IOException) {
+                // エラーを出力
+                e.printStackTrace()
+            } catch (e: JSONException) {
+                // jsonエラーを出力
+                e.printStackTrace()
+            }
+            // HTTP通信の結果、取得したjsonをhttpRequesetを戻り値とする
+            return@withContext httpResult
+        }
+
+        return response
+    }
+
+    private fun nextDetailPage(weatherJsonData: String) {
+
+        // 値受け渡しに必要な値を設定
+        val intent = Intent(this, weather_detail::class.java)
+
+        intent.putExtra("SELECTED_PLACE_VALUE", weatherJsonData)
+
+        // 画面遷移
+        startActivity(intent)
+    }
+
 }
