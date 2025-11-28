@@ -95,13 +95,16 @@ class MainActivity : AppCompatActivity() {
      * 天気情報取得API実行
      */
     private fun weatherTask(weatherUrl: String) {
+        // 天気情報取得APIキー
+        val weatherApiKey: String = BuildConfig.WEATHER_API_KEY
+
         // API実行用のURLを設定（平均が低い）
         val weatherUrlMinDiff =
-            "https://api.openweathermap.org/data/2.5/weather?appid=9a79f66e0be7596274cc1a66eb8b8116&lang=ja&units=metric&q=rikubetsu"
+            "https://api.openweathermap.org/data/2.5/weather?appid=" + weatherApiKey + "&lang=ja&units=metric&q=rikubetsu"
 
         // API実行用のURLを設定（平均が高い）
         val weatherUrlMaxDiff =
-            "https://api.openweathermap.org/data/2.5/weather?appid=9a79f66e0be7596274cc1a66eb8b8116&lang=ja&units=metric&q=okinawa"
+            "https://api.openweathermap.org/data/2.5/weather?appid=" + weatherApiKey + "&lang=ja&units=metric&q=okinawa"
 
         var weatherJsonData: String = ""
         var weatherUrlMinTempDiffJsonData: String = ""
