@@ -95,13 +95,27 @@ class MainActivity : AppCompatActivity() {
      * 天気情報取得API実行
      */
     private fun weatherTask(weatherUrl: String) {
+        // API実行用のURLを設定（平均が低い）
+        val weatherUrlMinDiff =
+            "https://api.openweathermap.org/data/2.5/weather?appid=9a79f66e0be7596274cc1a66eb8b8116&lang=ja&units=metric&q=rikubetsu"
+
+        // API実行用のURLを設定（平均が高い）
+        val weatherUrlMaxDiff =
+            "https://api.openweathermap.org/data/2.5/weather?appid=9a79f66e0be7596274cc1a66eb8b8116&lang=ja&units=metric&q=okinawa"
+
         var weatherJsonData: String = ""
+        var weatherUrlMinTempDiffJsonData: String = ""
+        var weatherUrlMaxTempDiffJsonData: String = ""
         lifecycleScope.launch {
             // HTTP通信
             weatherJsonData = weatherBackgroundTask(weatherUrl)
 
+            // HTTP通信（平均気温差取得用）
+            weatherUrlMinTempDiffJsonData = weatherBackgroundTask(weatherUrlMinDiff)
+            weatherUrlMaxTempDiffJsonData = weatherBackgroundTask(weatherUrlMaxDiff)
+
             // 天気詳細画面へ移動：HTTP通信を受けてお天気データ(json)を表示
-            nextDetailPage(weatherJsonData)
+            nextDetailPage(weatherJsonData, weatherUrlMinTempDiffJsonData, weatherUrlMaxTempDiffJsonData)
         }
     }
 
@@ -139,12 +153,18 @@ class MainActivity : AppCompatActivity() {
     /**
      * 天気詳細ページ移動
      */
-    private fun nextDetailPage(weatherJsonData: String) {
+    private fun nextDetailPage(
+        weatherJsonData: String,
+        weatherUrlMinTempDiffJsonData: String,
+        weatherUrlMaxTempDiffJsonData: String
+    ) {
 
         // 値受け渡しに必要な値を設定
         val intent = Intent(this, weather_detail::class.java)
 
         intent.putExtra("SELECTED_PLACE_VALUE", weatherJsonData)
+        intent.putExtra("MIN_TEMP_DATA", weatherUrlMinTempDiffJsonData)
+        intent.putExtra("MAX_TEMP_DATA", weatherUrlMaxTempDiffJsonData)
 
         // 画面遷移
         startActivity(intent)

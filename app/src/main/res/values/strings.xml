@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">天気アプリ</string>
 
+    <!-- 気温: %1$.2f は、小数点以下2桁の浮動小数点数（Double/Float）が第一引数として入ることを示します。 -->
+    <string name="temperatureDisplay">%1$.2f 度</string>
+
+    <!-- 湿度: %1$d は、小数点以下2桁の浮動小数点数（Double/Float）が第一引数として入ることを示します。 -->
+    <string name="humidityDisplay">%1$d %%</string>
+
+    <!-- 地域気温差タイトル: %1$s は場所の名前（文字列） -->
+    <string name="temperatureDifferenceTitle">%1$sと各地の気温差について</string>
+
+    <!-- 最低気温との比較:
+         %1$s: 比較対象の場所の名前
+         %2$.1f: 比較対象の場所の気温（小数点以下1桁の浮動小数点数）
+         %3$.1f: 気温差（小数点以下1桁の浮動小数点数）
+    -->
+    <string name="tempMinComparison">日本で平均気温が低い「%1$s（現在%2$.1f度）」より%3$.1f度暖かいです</string>
+
+    <!-- 最高気温との比較:
+         %1$s: 比較対象の場所の名前
+         %2$.1f: 比較対象の場所の気温
+         %3$.1f: 気温差
+    -->
+    <string name="tempMaxComparison">日本で平均気温が高い「%1$s（現在%2$.1f度）」より%3$.1f度寒いです</string>
+
 </resources>
