@@ -11,7 +11,7 @@
         android:id="@+id/tvDetail"
         android:layout_width="420dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:background="#385851"
         android:text="天気詳細"
         android:textAlignment="center"
