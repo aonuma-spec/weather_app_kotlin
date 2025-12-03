@@ -3,9 +3,11 @@ package com.example.weatherappkotlin
 import CustomSpinnerAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -76,6 +78,23 @@ class MainActivity : AppCompatActivity() {
 
         // 2: ボタン押下で天気詳細画面へ移動
         binding.btnWeatherDetail.setOnClickListener {
+
+            try {
+
+                if (weatherApiKey.isNullOrEmpty()) {
+                    val errorMessage = "API Key is missing or empty"
+                    Log.e("WEATHER_APP", errorMessage)
+                    throw RuntimeException(errorMessage)
+                }
+
+            } catch (e: RuntimeException) {
+                // 天気取得APIが取得できなかった場合
+                // 処理失敗をユーザーに通知する
+                alertApiKeyErrorDialog()
+
+                // ボタン押下処理を終了する
+                return@setOnClickListener
+            }
 
             // 選択されたPlaceオブジェクトを取得
             val selectedPlaceObject = binding.placeSpinner.selectedItem as Place
@@ -171,6 +190,21 @@ class MainActivity : AppCompatActivity() {
 
         // 画面遷移
         startActivity(intent)
+    }
+
+    private fun alertApiKeyErrorDialog() {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("エラー")
+        builder.setMessage("天気の取得に失敗しました")
+
+        builder.setPositiveButton("OK") {
+            dialog, which ->
+            dialog.dismiss()
+        }
+
+        val alert = builder.create()
+        alert.show()
     }
 
 }
