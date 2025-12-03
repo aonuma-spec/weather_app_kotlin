@@ -13,6 +13,7 @@ Weather APIからデータを取得し、画面に表示します。
 ## 利用プラグイン
 - libs.plugins.android.application
 - libs.plugins.kotlin.android
+- com.google.android.libraries.mapsplatform.secrets-gradle-plugin
 
 ## 利用パッケージ
 - Coroutines::1.6.0
@@ -58,4 +59,4 @@ Weather APIからデータを取得し、画面に表示します。
 │               └── values/\
 │                   ├── strings.xml\
 │                   └── themes.xml\
-└── gradle.properties (削除済み D)\
+└── gradle.properties
