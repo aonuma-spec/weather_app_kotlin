@@ -47,64 +47,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         val repository = WeatherRepository()
         presenter = MainPresenter(this, repository, lifecycleScope)
 
-        SetupUI()
+        setupUI()
 
         // onCreate完了をPresenterに通知
         presenter.onViewCreated()
-
-//        /**
-//         * 地域一覧
-//         */
-//        //地域一覧の設定値
-//        val spinner: Spinner = findViewById(R.id.placeSpinner)
-//
-//        /**
-//         * 送信ボタン押下時処理
-//         */
-//        // 1. viewの取得
-//        val btnWeatherDetail: Button = findViewById(R.id.btnWeatherDetail)
-////
-////        // 2: ボタン押下で天気詳細画面へ移動
-////        binding.btnWeatherDetail.setOnClickListener {
-////            try {
-////                if (WEATHER_API_KEY.isNullOrEmpty()) {
-////                    val errorMessage = "API Key is missing or empty"
-////                    Log.e("WEATHER_APP", errorMessage)
-////                    throw RuntimeException(errorMessage)
-////                }
-////            } catch (e: RuntimeException) {
-////                // 天気取得APIが取得できなかった場合
-////                // 処理失敗をユーザーに通知する
-////                alertApiKeyErrorDialog()
-////
-////                // ボタン押下処理を終了する
-////                return@setOnClickListener
-////            }
-////        }
-//    }
-//
-//
-//    /**
-//     * 天気詳細ページ移動
-//     */
-//    private fun nextDetailPage(
-//        weatherJsonData: String,
-//        weatherUrlMinTempDiffJsonData: String,
-//        weatherUrlMaxTempDiffJsonData: String
-//    ) {
-//
-//        // 値受け渡しに必要な値を設定
-//        val intent = Intent(this, WeatherDetailActivity::class.java)
-//
-//        intent.putExtra("SELECTED_PLACE_VALUE", weatherJsonData)
-//        intent.putExtra("MIN_TEMP_DATA", weatherUrlMinTempDiffJsonData)
-//        intent.putExtra("MAX_TEMP_DATA", weatherUrlMaxTempDiffJsonData)
-//
-//        // 画面遷移
-//        startActivity(intent)
-//    }
-//
-
     }
     // -- MainContract.Viewの実装 --
 
@@ -140,7 +86,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     /**
      * 画面を設定
      */
-    fun SetupUI() {
+    fun setupUI() {
         val placeAdapter = CustomSpinnerAdapter(
             this, android.R.layout.simple_spinner_dropdown_item,
             PLACE_LIST
