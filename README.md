@@ -30,33 +30,22 @@ Weather APIからデータを取得し、画面に表示します。
 - WEATHER_API_KEY: Weather APIより取得したAPIキーの値を設定
 
 ## ディレクトリ構成
-.\
-├── .gitignore\
-├── .idea/\
-│   ├── deploymentTargetSelector.xml\
-│   ├── gradle.xml\
-│   └── misc.xml\
-├── app/\
-│   ├── build.gradle.kts\
-│   └── src/\
-│       └── main/\
-│           ├── AndroidManifest.xml\
-│           ├── java/\
-│           │   └── com/\
-│           │       └── example/\
-│           │           └── weatherappkotlin/\
-│           │               ├── data/\
-│           │               │   └── model/\
-│           │               │       ├── CustomSpinnerAdapter.kt\
-│           │               │       └── Place.kt\
-│           │               ├── MainActivity.kt\
-│           │               └── weather_detail.kt\
-│           └── res/\
-│               ├── layout/\
-│               ├── layout/\
-│               │   ├── activity_main.xml\
-│               │   └── activity_weather_detail.xml\
-│               └── values/\
-│                   ├── strings.xml\
-│                   └── themes.xml\
-└── gradle.properties
+weatherappkotlin/\
+|__ data/\
+　　　|__ model/\
+　　　　　　|__ CustomSpinnerAdapter.kt\
+　　　　　　|__ Place.kt\
+　　　　　　|__ WeatherDetail.kt\
+　　　|__ repository/\
+　　　　　　|__ WeatherDetailRepository.kt\
+　　　　　　|__ WeatherRepository.kt\
+|__ presenter/\
+　　　|__ MainContract.kt\
+　　　|__ MainPresenter.kt\
+　　　|__ WeatherDetailContract.kt\
+　　　|__ WeatherDetailPresenter.kt\
+|__ ui/\
+　　　|__ MainActivity.kt\
+　　　|__ WeatherDetailActivity.kt\
+|__ util/\
+　　　|__ Constants.kt\
