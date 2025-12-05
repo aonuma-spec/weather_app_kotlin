@@ -7,66 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-
     <!-- 天気アプリのタイトル -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="420dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="80dp"
-        android:background="#385851"
-        android:text="天気アプリ"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- 画像を表示 -->
-    <ImageView
-        android:id="@+id/img_otenki"
-        android:layout_width="232dp"
-        android:layout_height="344dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/job_otenki_oneesan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-    <!-- 選択地域のタイトル -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="地域を選択してください"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_otenki" />
-
-    <!-- 選択地域の一覧 -->
-    <Spinner
-        android:id="@+id/placeSpinner"
-        android:layout_width="115dp"
-        android:layout_height="27dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <!-- 選択地域の送信ボタン -->
-    <Button
-        android:id="@+id/btnWeatherDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="送信する"
+    <FrameLayout
+        android:id="@+id/flMain"
+        android:layout_width="match_parent"
+        android:layout_height="625dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/placeSpinner" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,20 +42,6 @@ class MainPresenter(
 
         // API実行処理
         fetchWeatherData(weatherUrl)
-
-//        try {
-//            if (WEATHER_API_KEY.isNullOrEmpty()) {
-//                val errorMessage = "API Key is missing or empty"
-//                Log.e("WEATHER_APP", errorMessage)
-//                throw RuntimeException(errorMessage)
-//            }
-//        } catch (e: RuntimeException) {
-//            // 天気取得APIが取得できなかった場合
-//            // 処理失敗をユーザーに通知する
-//            alertApiKeyErrorDialog()
-//
-//            // ボタン押下処理を終了する
-//            return@setOnClickListener
     }
 
     /**

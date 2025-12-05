@@ -23,5 +23,8 @@
          %3$.1f: 気温差（小数点以下2桁の浮動小数点数）
     -->
     <string name="tempMaxComparison">日本で平均気温が高い「%1$s（現在%2$.2f度）」より%3$.2f度寒いです</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_nab">nab</string>
 
 </resources>

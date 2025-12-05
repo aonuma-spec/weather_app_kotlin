@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.WeatherDetailFragment">
+
+    <TextView
+        android:id="@+id/tvDetail"
+        android:layout_width="420dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="0dp"
+        android:background="#385851"
+        android:text="天気詳細"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:flow_verticalAlign="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgWeather"
+        android:layout_width="258dp"
+        android:layout_height="165dp"
+        android:src="@drawable/mark_tenki_hare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlace" />
+
+    <TextView
+        android:id="@+id/tvPlace"
+        android:layout_width="320dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="32dp"
+        android:background="#385851"
+        android:text="エラー"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetail" />
+
+    <TextView
+        android:id="@+id/tvWeather"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="24dp"
+        android:background="#385851"
+        android:text="天気"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgWeather" />
+
+    <TextView
+        android:id="@+id/tvTemp"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:background="#385851"
+        android:text="温度"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeather" />
+
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="75dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:background="#385851"
+        android:text="湿度"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+
+    <TextView
+        android:id="@+id/tvWeatherData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="-"
+        app:layout_constraintStart_toEndOf="@+id/tvWeather"
+        app:layout_constraintTop_toBottomOf="@+id/imgWeather" />
+
+    <TextView
+        android:id="@+id/tvTempData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="- 度"
+        app:layout_constraintStart_toEndOf="@+id/tvTemp"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherData" />
+
+    <TextView
+        android:id="@+id/tvHumidityData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="- %"
+        app:layout_constraintStart_toEndOf="@+id/tvHumidity"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempData" />
+
+    <TextView
+        android:id="@+id/tvTemperatureDifference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="各地の気温差について"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHumidity" />
+
+    <TextView
+        android:id="@+id/tvTempMin"
+        android:layout_width="325dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTemperatureDifference" />
+
+    <TextView
+        android:id="@+id/tvTempMax"
+        android:layout_width="325dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempMin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
