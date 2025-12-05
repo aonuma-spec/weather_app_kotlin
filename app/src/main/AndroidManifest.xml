@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherAppKotlin">
         <activity
-            android:name=".weather_detail"
+            android:name=".ui.WeatherDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

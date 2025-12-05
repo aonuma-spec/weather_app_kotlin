@@ -10,7 +10,7 @@ import com.example.weatherappkotlin.data.model.Place
  * 地域一覧の表示名と値
  */
 class CustomSpinnerAdapter(context: Context, resource: Int, items: List<Place>) :
-    ArrayAdapter<Place>(context, resource, items) {
+    android.widget.ArrayAdapter<Place>(context, resource, items) {
 
     // プルダウンを閉じたときに表示されるビューの設定
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
