@@ -1,10 +1,8 @@
 package com.example.weatherappkotlin.presenter
-import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
-import com.example.weatherappkotlin.data.model.Place
+import com.example.weatherappkotlin.data.model.PlaceModel
 import com.example.weatherappkotlin.data.repository.WeatherRepository
 import com.example.weatherappkotlin.util.MAIN_URL
-import androidx.lifecycle.lifecycleScope
 import com.example.weatherappkotlin.util.WEATHER_API_KEY
 import com.example.weatherappkotlin.util.WEATHER_URL_MAX
 import com.example.weatherappkotlin.util.WEATHER_URL_MIN
@@ -29,7 +27,7 @@ class MainPresenter(
         }
     }
 
-    override fun onWeatherDetailButtonClicked(selectedPlace: Place) {
+    override fun onWeatherDetailButtonClicked(selectedPlace: PlaceModel) {
 
         val currentKey = apiKey
 

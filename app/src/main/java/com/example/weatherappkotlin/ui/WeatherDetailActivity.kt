@@ -1,22 +1,17 @@
 package com.example.weatherappkotlin.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.weatherappkotlin.R
-import com.example.weatherappkotlin.data.model.WeatherDetail
+import com.example.weatherappkotlin.data.model.WeatherDetailModel
 import com.example.weatherappkotlin.data.repository.WeatherDetailRepository
 import com.example.weatherappkotlin.databinding.ActivityWeatherDetailBinding
 import com.example.weatherappkotlin.presenter.WeatherDetailContract
 import com.example.weatherappkotlin.presenter.WeatherDetailPresenter
-import org.json.JSONObject
-import kotlin.math.abs
 
 class WeatherDetailActivity : AppCompatActivity(), WeatherDetailContract.View {
     // binding変数を設定
@@ -49,7 +44,7 @@ class WeatherDetailActivity : AppCompatActivity(), WeatherDetailContract.View {
         presenter.handleIntentData(placeVal, minTempData, maxTempData)
     }
 
-    override fun displayWeatherData(detail: WeatherDetail) {
+    override fun displayWeatherData(detail: WeatherDetailModel) {
         // Presenterから受け取ったデータでUIを更新する
         binding.tvPlace.text = detail.placeName
         binding.tvWeatherData.text = detail.description

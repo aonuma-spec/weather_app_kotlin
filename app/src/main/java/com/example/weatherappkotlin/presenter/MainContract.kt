@@ -1,6 +1,6 @@
 package com.example.weatherappkotlin.presenter
 
-import com.example.weatherappkotlin.data.model.Place
+import com.example.weatherappkotlin.data.model.PlaceModel
 
 /**
  * ViewとPresenterの間で呼び出せるメソッドを定義する
@@ -10,7 +10,7 @@ interface MainContract {
     // ViewがPresenterに要求できる操作
     interface Presenter {
         fun onViewCreated()
-        fun onWeatherDetailButtonClicked(selectedPlace: Place)
+        fun onWeatherDetailButtonClicked(selectedPlace: PlaceModel)
         fun onDestroy() // ViewのライフサイクルとPresenterを連携させる
     }
 

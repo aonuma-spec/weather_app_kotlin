@@ -2,7 +2,6 @@ package com.example.weatherappkotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,8 @@ import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.data.repository.WeatherRepository
 import com.example.weatherappkotlin.databinding.ActivityMainBinding
 import com.example.weatherappkotlin.presenter.MainPresenter
-import CustomSpinnerAdapter
-import com.example.weatherappkotlin.data.model.Place
+import CustomSpinnerAdapterModel
+import com.example.weatherappkotlin.data.model.PlaceModel
 import com.example.weatherappkotlin.presenter.MainContract
 import com.example.weatherappkotlin.util.PLACE_LIST
 
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
      * 画面を設定
      */
     fun setupUI() {
-        val placeAdapter = CustomSpinnerAdapter(
+        val placeAdapter = CustomSpinnerAdapterModel(
             this, android.R.layout.simple_spinner_dropdown_item,
             PLACE_LIST
         )
@@ -95,7 +94,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         // ボタン押下で天気詳細画面へ移動
         binding.btnWeatherDetail.setOnClickListener {
-            val selectedPlaceObject = binding.placeSpinner.selectedItem as Place
+            val selectedPlaceObject = binding.placeSpinner.selectedItem as PlaceModel
             presenter.onWeatherDetailButtonClicked(selectedPlaceObject)
         }
     }

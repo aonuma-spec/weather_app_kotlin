@@ -1,6 +1,6 @@
 package com.example.weatherappkotlin.presenter
 
-import com.example.weatherappkotlin.data.model.WeatherDetail
+import com.example.weatherappkotlin.data.model.WeatherDetailModel
 
 interface WeatherDetailContract {
 
@@ -12,7 +12,7 @@ interface WeatherDetailContract {
 
     // Presenterからデータを受け取り表示する
     interface View {
-        fun displayWeatherData(detail: WeatherDetail)
+        fun displayWeatherData(detail: WeatherDetailModel)
         fun setWeatherIcon(resourceId: Int)
         fun showErrorAndFinish()
     }

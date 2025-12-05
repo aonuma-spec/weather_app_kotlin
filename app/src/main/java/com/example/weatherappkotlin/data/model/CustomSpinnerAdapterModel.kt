@@ -2,15 +2,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.example.weatherappkotlin.data.model.Place
+import com.example.weatherappkotlin.data.model.PlaceModel
 
 /**
  * 地域一覧の表示名と値
  */
-class CustomSpinnerAdapter(context: Context, resource: Int, items: List<Place>) :
-    android.widget.ArrayAdapter<Place>(context, resource, items) {
+class CustomSpinnerAdapterModel(context: Context, resource: Int, items: List<PlaceModel>) :
+    android.widget.ArrayAdapter<PlaceModel>(context, resource, items) {
 
     // プルダウンを閉じたときに表示されるビューの設定
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

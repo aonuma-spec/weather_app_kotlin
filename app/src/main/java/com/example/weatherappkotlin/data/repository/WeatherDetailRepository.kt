@@ -1,6 +1,6 @@
 package com.example.weatherappkotlin.data.repository
 
-import com.example.weatherappkotlin.data.model.WeatherDetail
+import com.example.weatherappkotlin.data.model.WeatherDetailModel
 import org.json.JSONObject
 import kotlin.math.abs
 
@@ -10,7 +10,7 @@ class WeatherDetailRepository {
         placeVal: String?,
         minTempData: String?,
         maxTempData: String?
-    ): WeatherDetail? {
+    ): WeatherDetailModel? {
         if (placeVal == null || minTempData == null || maxTempData == null) {
             return null
         }
@@ -30,7 +30,7 @@ class WeatherDetailRepository {
         val minTemp = minPlaceWeatherData["temp"] as Double
         val maxTemp = maxPlaceWeatherData["temp"] as Double
 
-        return WeatherDetail(
+        return WeatherDetailModel(
             placeName = selectedData["name"] as String,
             weatherMain = selectedData["main"] as String,
             description = selectedData["description"] as String,

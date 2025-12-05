@@ -3,7 +3,7 @@ package com.example.weatherappkotlin.data.model
 /**
  * 天気APIから受け取ったJSONパースを行う
  */
-data class WeatherDetail(
+data class WeatherDetailModel(
     val placeName: String,
     val weatherMain: String,
     val description: String,
