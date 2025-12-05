@@ -33,9 +33,9 @@ Weather APIからデータを取得し、画面に表示します。
 weatherappkotlin/\
 |__ data/\
 　　　|__ model/\
-　　　　　　|__ CustomSpinnerAdapter.kt\
-　　　　　　|__ Place.kt\
-　　　　　　|__ WeatherDetail.kt\
+　　　　　　|__ CustomSpinnerAdapterModel.kt\
+　　　　　　|__ PlaceModel.kt\
+　　　　　　|__ WeatherDetailModel.kt\
 　　　|__ repository/\
 　　　　　　|__ WeatherDetailRepository.kt\
 　　　　　　|__ WeatherRepository.kt\
