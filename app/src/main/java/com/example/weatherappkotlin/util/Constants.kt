@@ -1,10 +1,11 @@
 package com.example.weatherappkotlin.util
 
 import com.example.weatherappkotlin.BuildConfig
+import com.example.weatherappkotlin.BuildConfig.WEATHER_API_KEY
 import com.example.weatherappkotlin.data.model.PlaceModel
 
 // 天気情報取得APIキー
-const val WEATHER_API_KEY: String = BuildConfig.WEATHER_API_KEY
+val WEATHER_API_KEY: String? = WEATHER_API_KEY
 // URL
 const val MAIN_URL = "https://api.openweathermap.org/data/2.5/weather?appid="
 
