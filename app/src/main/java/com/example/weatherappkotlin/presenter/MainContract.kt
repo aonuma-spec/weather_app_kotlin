@@ -17,6 +17,7 @@ interface MainContract {
     //PresenterがViewに要求できる操作
     interface View {
         fun showApiKeyErrorDialog()
+        fun showApiErrorDialog()
         fun navigateToDetail(weatherJson: String, minTempData: String, maxTempData: String)
     }
 }

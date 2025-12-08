@@ -62,6 +62,18 @@ class MainFragment : Fragment(), MainContract.View {
         // requireContext() を使ってダイアログを表示
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("エラー")
+        builder.setMessage("エラーが発生しました")
+        builder.setPositiveButton("OK") { dialog, which ->
+            dialog.dismiss()
+        }
+        val alert = builder.create()
+        alert.show()
+    }
+
+    override fun showApiErrorDialog() {
+        // requireContext() を使ってダイアログを表示
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("エラー")
         builder.setMessage("天気の取得に失敗しました")
         builder.setPositiveButton("OK") { dialog, which ->
             dialog.dismiss()

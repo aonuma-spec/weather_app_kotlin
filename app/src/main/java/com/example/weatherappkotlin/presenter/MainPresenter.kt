@@ -32,7 +32,7 @@ class MainPresenter(
         val currentKey = apiKey
 
         if (currentKey.isNullOrEmpty()) {
-            view?.showApiKeyErrorDialog()
+            view?.showApiErrorDialog()
             return
         }
 
@@ -62,7 +62,7 @@ class MainPresenter(
                         weatherUrlMaxTempData
                     )
             } else {
-                view?.showApiKeyErrorDialog()
+                view?.showApiErrorDialog()
             }
         }
     }
