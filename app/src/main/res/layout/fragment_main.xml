@@ -4,10 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- 画像を表示 -->
+
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="420dp"
+        android:layout_width="match_parent"
         android:layout_height="49dp"
+        android:layout_marginTop="32dp"
         android:background="#385851"
         android:text="天気アプリ"
         android:textAlignment="center"
@@ -15,14 +18,14 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- 画像を表示 -->
     <ImageView
         android:id="@+id/img_otenki"
-        android:layout_width="232dp"
-        android:layout_height="344dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
+        app:layout_constraintHeight_percent= ".4"
         android:src="@drawable/job_otenki_oneesan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
