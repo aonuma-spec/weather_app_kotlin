@@ -32,20 +32,20 @@ Weather APIからデータを取得し、画面に表示します。
 ## ディレクトリ構成
 weatherappkotlin/\
 |__ data/\
-   |__ model/\
-      |__ CustomSpinnerAdapterModel.kt\
-      |__ PlaceModel.kt\
-      |__ WeatherDetailModel.kt\
-   |__ repository/\
-      |__ WeatherDetailRepository.kt\
-      |__ WeatherRepository.kt\
+&nbsp;&nbsp;&nbsp;|__ model/\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ CustomSpinnerAdapterModel.kt\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ PlaceModel.kt\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ WeatherDetailModel.kt\
+&nbsp;&nbsp;&nbsp;|__ repository/\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ WeatherDetailRepository.kt\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ WeatherRepository.kt\
 |__ presenter/\
-   |__ MainContract.kt\
-   |__ MainPresenter.kt\
-   |__ WeatherDetailContract.kt\
-   |__ WeatherDetailPresenter.kt\
+&nbsp;&nbsp;&nbsp;|__ MainContract.kt\
+&nbsp;&nbsp;&nbsp;|__ MainPresenter.kt\
+&nbsp;&nbsp;&nbsp;|__ WeatherDetailContract.kt\
+&nbsp;&nbsp;&nbsp;|__ WeatherDetailPresenter.kt\
 |__ ui/\
-   |__ MainActivity.kt\
-   |__ WeatherDetailActivity.kt\
+&nbsp;&nbsp;&nbsp;|__ MainActivity.kt\
+&nbsp;&nbsp;&nbsp;|__ WeatherDetailActivity.kt\
 |__ util/\
-   |__ Constants.kt\
+&nbsp;&nbsp;&nbsp;|__ Constants.kt\
