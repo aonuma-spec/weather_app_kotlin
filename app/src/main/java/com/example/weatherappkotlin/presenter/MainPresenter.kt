@@ -6,6 +6,7 @@ import com.example.weatherappkotlin.util.MAIN_URL
 import com.example.weatherappkotlin.util.WEATHER_API_KEY
 import com.example.weatherappkotlin.util.WEATHER_URL_MAX
 import com.example.weatherappkotlin.util.WEATHER_URL_MIN
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 /**
@@ -50,9 +51,13 @@ class MainPresenter(
     private fun fetchWeatherData(weatherUrl: String) {
 
         lifecycleScope.launch {
-            val weatherJsonData = repository.fetchWeatherJson(weatherUrl)
-            val weatherUrlMinTempData = repository.fetchWeatherJson(WEATHER_URL_MIN)
-            val weatherUrlMaxTempData = repository.fetchWeatherJson(WEATHER_URL_MAX)
+            val weatherDeferred = async {repository.fetchWeatherJson(weatherUrl)}
+            val weatherUrlMinTempDeferred = async {repository.fetchWeatherJson(WEATHER_URL_MIN)}
+            val weatherUrlMaxTempDeferred = async {repository.fetchWeatherJson(WEATHER_URL_MAX)}
+
+            val weatherJsonData = weatherDeferred.await()
+            val weatherUrlMinTempData = weatherUrlMinTempDeferred.await()
+            val weatherUrlMaxTempData = weatherUrlMaxTempDeferred.await()
 
             if (weatherJsonData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty()) {
 
