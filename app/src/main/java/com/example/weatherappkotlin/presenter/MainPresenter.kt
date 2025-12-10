@@ -2,10 +2,9 @@ package com.example.weatherappkotlin.presenter
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.weatherappkotlin.data.model.PlaceModel
 import com.example.weatherappkotlin.data.repository.WeatherRepository
-import com.example.weatherappkotlin.util.MAIN_URL
 import com.example.weatherappkotlin.util.WEATHER_API_KEY
-import com.example.weatherappkotlin.util.WEATHER_URL_MAX
-import com.example.weatherappkotlin.util.WEATHER_URL_MIN
+import com.example.weatherappkotlin.util.TEMP_MAX_PLACE
+import com.example.weatherappkotlin.util.TEMP_MIN_PLACE
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -37,23 +36,24 @@ class MainPresenter(
             return
         }
 
-        // API実行用のURLを設定
-        val weatherUrl =
-            "${MAIN_URL}${WEATHER_API_KEY}&lang=ja&units=metric&q=${selectedPlace.value}"
+//        // API実行用のURLを設定
+//        val weatherUrl =
+//            "${MAIN_URL}${WEATHER_API_KEY}&lang=ja&units=metric&q=${selectedPlace.value}"
 
         // API実行処理
-        fetchWeatherData(weatherUrl)
+        fetchWeatherData(selectedPlace.value)
+//        fetchWeatherData(weatherUrl)
     }
 
     /**
      * API実行を行う処理
      */
-    private fun fetchWeatherData(weatherUrl: String) {
+    private fun fetchWeatherData(selectedPlace: String) {
 
         lifecycleScope.launch {
-            val weatherDeferred = async {repository.fetchWeatherJson(weatherUrl)}
-            val weatherUrlMinTempDeferred = async {repository.fetchWeatherJson(WEATHER_URL_MIN)}
-            val weatherUrlMaxTempDeferred = async {repository.fetchWeatherJson(WEATHER_URL_MAX)}
+            val weatherDeferred = async {repository.fetchWeatherJson(selectedPlace)}
+            val weatherUrlMinTempDeferred = async {repository.fetchWeatherJson(TEMP_MIN_PLACE)}
+            val weatherUrlMaxTempDeferred = async {repository.fetchWeatherJson(TEMP_MAX_PLACE)}
 
             val weatherJsonData = weatherDeferred.await()
             val weatherUrlMinTempData = weatherUrlMinTempDeferred.await()

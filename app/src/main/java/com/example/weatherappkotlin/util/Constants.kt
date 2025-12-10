@@ -1,6 +1,5 @@
 package com.example.weatherappkotlin.util
 
-import com.example.weatherappkotlin.BuildConfig
 import com.example.weatherappkotlin.BuildConfig.WEATHER_API_KEY
 import com.example.weatherappkotlin.data.model.PlaceModel
 
@@ -8,7 +7,6 @@ import com.example.weatherappkotlin.data.model.PlaceModel
 val WEATHER_API_KEY: String? = WEATHER_API_KEY
 // URL
 const val MAIN_URL = "https://api.openweathermap.org/data/2.5/weather?appid="
-
 
 val PLACE_LIST = listOf(
     PlaceModel("東京", "tokyo"),
@@ -22,9 +20,7 @@ val PLACE_LIST = listOf(
 )
 
 // API実行用のURLを設定（平均が低い）
-val WEATHER_URL_MIN =
-    "https://api.openweathermap.org/data/2.5/weather?appid=" + WEATHER_API_KEY + "&lang=ja&units=metric&q=rikubetsu"
+val TEMP_MIN_PLACE = "rikubetsu"
 
 // API実行用のURLを設定（平均が高い）
-val WEATHER_URL_MAX =
-    "https://api.openweathermap.org/data/2.5/weather?appid=" + WEATHER_API_KEY + "&lang=ja&units=metric&q=okinawa"
+val TEMP_MAX_PLACE = "okinawa"
