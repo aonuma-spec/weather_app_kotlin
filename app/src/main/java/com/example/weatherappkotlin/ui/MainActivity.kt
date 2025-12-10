@@ -1,23 +1,16 @@
 package com.example.weatherappkotlin.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.core.view.WindowInsetsCompat
 import com.example.weatherappkotlin.R
-import com.example.weatherappkotlin.data.repository.WeatherRepository
 import com.example.weatherappkotlin.databinding.ActivityMainBinding
 import com.example.weatherappkotlin.presenter.MainPresenter
-import CustomSpinnerAdapterModel
-import com.example.weatherappkotlin.data.model.PlaceModel
-import com.example.weatherappkotlin.databinding.FragmentWeatherDetailBinding
-import com.example.weatherappkotlin.presenter.MainContract
-import com.example.weatherappkotlin.util.PLACE_LIST
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     // binding変数を設定

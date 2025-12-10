@@ -11,9 +11,12 @@ if (secretsFile.exists()) {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    kotlin("plugin.serialization") version "1.9.23"
     alias(libs.plugins.kotlin.compose)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("com.google.dagger.hilt.android")
+    id ("com.google.devtools.ksp") version "1.9.23-1.0.20" apply false
+    kotlin("kapt")
+    kotlin("plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -72,6 +75,7 @@ android {
 dependencies {
     // コルーチンとライフサイクルKtxのバージョンを更新
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3") // 2.3.0 -> 2.8.3
+    implementation("com.google.dagger:hilt-android:2.51.1")
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
@@ -105,6 +109,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:$nav_version")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 }
 
 secrets {

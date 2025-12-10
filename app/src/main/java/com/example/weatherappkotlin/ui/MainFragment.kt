@@ -3,7 +3,6 @@ package com.example.weatherappkotlin.ui
 import CustomSpinnerAdapterModel
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +10,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.data.model.PlaceModel
-import com.example.weatherappkotlin.data.repository.WeatherDetailRepository
 import com.example.weatherappkotlin.data.repository.WeatherRepository
-import com.example.weatherappkotlin.databinding.ActivityMainBinding
 import com.example.weatherappkotlin.databinding.FragmentMainBinding
-import com.example.weatherappkotlin.databinding.FragmentWeatherDetailBinding
 import com.example.weatherappkotlin.presenter.MainContract
 import com.example.weatherappkotlin.presenter.MainPresenter
 import com.example.weatherappkotlin.util.PLACE_LIST
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainFragment : Fragment(), MainContract.View {
 
     // view bindingインスタンスを保持する
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    // Fragment内でPresenterを初期化
+
+    // Fragment内でRepositoryとPresenterを初期化
+    @Inject lateinit var repository: WeatherRepository
     private lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +45,9 @@ class MainFragment : Fragment(), MainContract.View {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        //PresenterとRepositoryを初期化し、Viewと紐づける
-        val repository = WeatherRepository()
-        presenter = MainPresenter(this, repository, lifecycleScope)
+        //PresenterにDIのRepositoryを設定し、Viewと紐づける
+        presenter = MainPresenter(this, repository, viewLifecycleOwner.lifecycleScope)
 
         setupUI()
 

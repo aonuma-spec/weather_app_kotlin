@@ -18,7 +18,6 @@ class MainPresenter(
     private val lifecycleScope: LifecycleCoroutineScope
 ) : MainContract.Presenter {
     private var apiKey: String? = null
-    private var mainUrl: String? = null
 
     override fun onViewCreated() {
         this.apiKey = WEATHER_API_KEY
@@ -36,13 +35,8 @@ class MainPresenter(
             return
         }
 
-//        // API実行用のURLを設定
-//        val weatherUrl =
-//            "${MAIN_URL}${WEATHER_API_KEY}&lang=ja&units=metric&q=${selectedPlace.value}"
-
         // API実行処理
         fetchWeatherData(selectedPlace.value)
-//        fetchWeatherData(weatherUrl)
     }
 
     /**
