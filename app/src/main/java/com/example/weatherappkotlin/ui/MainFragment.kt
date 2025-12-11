@@ -112,6 +112,7 @@ class MainFragment : Fragment(), MainContract.View {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        presenter.onDestroy()
         _binding = null
     }
 
