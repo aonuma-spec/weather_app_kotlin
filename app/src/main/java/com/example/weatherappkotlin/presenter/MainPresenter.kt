@@ -5,6 +5,9 @@ import com.example.weatherappkotlin.data.repository.WeatherRepository
 import com.example.weatherappkotlin.util.WEATHER_API_KEY
 import com.example.weatherappkotlin.util.TEMP_MAX_PLACE
 import com.example.weatherappkotlin.util.TEMP_MIN_PLACE
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -15,9 +18,11 @@ class MainPresenter(
     // Viewへの参照をContract経由で保持する
     private var view: MainContract.View?,
     private val repository: WeatherRepository,
-    private val lifecycleScope: LifecycleCoroutineScope
 ) : MainContract.Presenter {
     private var apiKey: String? = null
+
+    // presenter用のCoroutineScope
+    private val presenterScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onViewCreated() {
         this.apiKey = WEATHER_API_KEY
@@ -44,10 +49,10 @@ class MainPresenter(
      */
     private fun fetchWeatherData(selectedPlace: String) {
 
-        lifecycleScope.launch {
-            val weatherDeferred = async {repository.fetchWeatherJson(selectedPlace)}
-            val weatherUrlMinTempDeferred = async {repository.fetchWeatherJson(TEMP_MIN_PLACE)}
-            val weatherUrlMaxTempDeferred = async {repository.fetchWeatherJson(TEMP_MAX_PLACE)}
+        presenterScope.launch {
+            val weatherDeferred = async { repository.fetchWeatherJson(selectedPlace) }
+            val weatherUrlMinTempDeferred = async { repository.fetchWeatherJson(TEMP_MIN_PLACE) }
+            val weatherUrlMaxTempDeferred = async { repository.fetchWeatherJson(TEMP_MAX_PLACE) }
 
             val weatherJsonData = weatherDeferred.await()
             val weatherUrlMinTempData = weatherUrlMinTempDeferred.await()
@@ -56,10 +61,10 @@ class MainPresenter(
             if (weatherJsonData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty()) {
 
                 view?.navigateToDetail(
-                        weatherJsonData,
-                        weatherUrlMinTempData,
-                        weatherUrlMaxTempData
-                    )
+                    weatherJsonData,
+                    weatherUrlMinTempData,
+                    weatherUrlMaxTempData
+                )
             } else {
                 view?.showApiErrorDialog()
             }

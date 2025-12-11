@@ -47,7 +47,7 @@ class MainFragment : Fragment(), MainContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         //PresenterにDIのRepositoryを設定し、Viewと紐づける
-        presenter = MainPresenter(this, repository, viewLifecycleOwner.lifecycleScope)
+        presenter = MainPresenter(this, repository, viewLifecycleOwner)
 
         setupUI()
 
