@@ -1,6 +1,7 @@
 package com.example.weatherappkotlin.data.repository
 
 import android.util.Log
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -10,15 +11,14 @@ class WeatherRepository @Inject constructor(
     private val api: WeatherApiService //DI
 ){
     /**
-     * HTTP通信 : ワーカースレッドの中身
-     * スレッドを分離し、IO（ワーカースレッド）で実行
+     * 天気情報取得APIを実行
      */
-    suspend fun fetchWeatherJson(selectedPlace: String): String = withContext(Dispatchers.IO) {
-        try{
+    suspend fun fetchWeatherJson(selectedPlace: String): WeatherApiResponseModel? {
+        return try{
             api.fetchWeatherData(selectedPlace)
         } catch (e: Exception){
             e.printStackTrace()
-            ""
+            null
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.weatherappkotlin.R
 import com.example.weatherappkotlin.data.model.PlaceModel
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 import com.example.weatherappkotlin.data.repository.WeatherRepository
 import com.example.weatherappkotlin.databinding.FragmentMainBinding
 import com.example.weatherappkotlin.presenter.MainContract
@@ -81,7 +82,11 @@ class MainFragment : Fragment(), MainContract.View {
         alert.show()
     }
 
-    override fun navigateToDetail(weatherJson: String, minTempData: String, maxTempData: String) {
+    override fun navigateToDetail(
+        weatherJson: WeatherApiResponseModel?,
+        minTempData: WeatherApiResponseModel?,
+        maxTempData: WeatherApiResponseModel?
+    ) {
         val fragment = WeatherDetailFragment.newInstance(
             weatherJson,
             minTempData,

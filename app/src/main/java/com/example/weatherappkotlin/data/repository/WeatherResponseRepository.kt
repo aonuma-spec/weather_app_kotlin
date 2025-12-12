@@ -22,7 +22,7 @@ class WeatherResponseRepository(
 sealed class WeatherResult {
     //成功した場合
     data class Success (
-        val data: String
+        val data: WeatherApiResponseModel
     ): WeatherResult()
 
     //エラーの場合

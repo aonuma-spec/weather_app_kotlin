@@ -1,12 +1,17 @@
 package com.example.weatherappkotlin.presenter
 
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 import com.example.weatherappkotlin.data.model.WeatherDetailModel
 
 interface WeatherDetailContract {
 
     //MainActivityから受け取ったIntentデータをPresenterに渡す
     interface Presenter {
-        fun handleIntentData(placeVal: String?, minTempData: String?, maxTempData: String?)
+        fun handleIntentData (
+            placeVal: WeatherApiResponseModel?,
+            minTempData: WeatherApiResponseModel?,
+            maxTempData: WeatherApiResponseModel?
+        )
         fun onDestroy()
     }
 

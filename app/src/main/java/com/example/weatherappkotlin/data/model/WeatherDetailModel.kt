@@ -1,5 +1,7 @@
 package com.example.weatherappkotlin.data.model
 
+import android.os.Parcelable
+
 /**
  * 天気APIから受け取ったJSONパースを行う
  */

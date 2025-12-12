@@ -12,6 +12,6 @@ interface WeatherApiService {
             @Query("appid") apiKey: String = WEATHER_API_KEY ?:"",
             @Query("units") units: String = "metric",
             @Query("lang") lang: String = "ja"
-    ): String
+    ): WeatherApiResponseModel
 }
 

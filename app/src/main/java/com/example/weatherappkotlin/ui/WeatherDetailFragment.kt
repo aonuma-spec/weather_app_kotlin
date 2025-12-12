@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.weatherappkotlin.R
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 import com.example.weatherappkotlin.data.model.WeatherDetailModel
 import com.example.weatherappkotlin.data.repository.WeatherDetailRepository
 import com.example.weatherappkotlin.presenter.WeatherDetailContract
@@ -39,9 +40,9 @@ class WeatherDetailFragment : Fragment(), WeatherDetailContract.View {
         presenter = WeatherDetailPresenter(this, repository)
 
         // 手動でBundleから受け取る場合
-        val placeVal = arguments?.getString("SELECTED_PLACE_VALUE")
-        val minTempData = arguments?.getString("MIN_TEMP_DATA")
-        val maxTempData = arguments?.getString("MAX_TEMP_DATA")
+        val placeVal = arguments?.getParcelable<WeatherApiResponseModel?>("SELECTED_PLACE_VALUE")
+        val minTempData = arguments?.getParcelable<WeatherApiResponseModel?>("MIN_TEMP_DATA")
+        val maxTempData = arguments?.getParcelable<WeatherApiResponseModel?>("MAX_TEMP_DATA")
 
         // Presenterに処理を依頼
         presenter.handleIntentData(placeVal, minTempData, maxTempData)
@@ -90,12 +91,16 @@ class WeatherDetailFragment : Fragment(), WeatherDetailContract.View {
     // MainFragmentからの遷移時に使用する newInstance メソッド
     companion object {
         @JvmStatic
-        fun newInstance(weatherJson: String, minTempData: String, maxTempData: String) =
+        fun newInstance(
+            weatherJson: WeatherApiResponseModel?,
+            minTempData: WeatherApiResponseModel?,
+            maxTempData: WeatherApiResponseModel?
+        ) =
             WeatherDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString("SELECTED_PLACE_VALUE", weatherJson)
-                    putString("MIN_TEMP_DATA", minTempData)
-                    putString("MAX_TEMP_DATA", maxTempData)
+                    putParcelable("SELECTED_PLACE_VALUE", weatherJson)
+                    putParcelable("MIN_TEMP_DATA", minTempData)
+                    putParcelable("MAX_TEMP_DATA", maxTempData)
                 }
             }
     }

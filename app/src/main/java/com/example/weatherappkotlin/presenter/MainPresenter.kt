@@ -59,8 +59,7 @@ class MainPresenter(
             val weatherUrlMinTempData = weatherUrlMinTempDeferred.await()
             val weatherUrlMaxTempData = weatherUrlMaxTempDeferred.await()
 
-            if (weatherJsonData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty() && weatherUrlMaxTempData.isNotEmpty()) {
-
+            if (weatherJsonData != null && weatherUrlMinTempData != null && weatherUrlMaxTempData != null) {
                 view?.navigateToDetail(
                     weatherJsonData,
                     weatherUrlMinTempData,

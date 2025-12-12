@@ -1,6 +1,7 @@
 package com.example.weatherappkotlin.presenter
 
 import com.example.weatherappkotlin.data.model.PlaceModel
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 
 /**
  * ViewとPresenterの間で呼び出せるメソッドを定義する
@@ -18,6 +19,10 @@ interface MainContract {
     interface View {
         fun showApiKeyErrorDialog()
         fun showApiErrorDialog()
-        fun navigateToDetail(weatherJson: String, minTempData: String, maxTempData: String)
+        fun navigateToDetail(
+            weatherJson: WeatherApiResponseModel?,
+            minTempData: WeatherApiResponseModel?,
+            maxTempData: WeatherApiResponseModel?
+        )
     }
 }

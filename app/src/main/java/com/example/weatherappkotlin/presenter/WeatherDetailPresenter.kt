@@ -2,6 +2,7 @@ package com.example.weatherappkotlin.presenter
 
 import android.util.Log
 import com.example.weatherappkotlin.R
+import com.example.weatherappkotlin.data.model.WeatherApiResponseModel
 import com.example.weatherappkotlin.data.repository.WeatherDetailRepository
 
 class WeatherDetailPresenter(
@@ -9,7 +10,11 @@ class WeatherDetailPresenter(
     private var repository: WeatherDetailRepository
 ): WeatherDetailContract.Presenter {
 
-    override fun handleIntentData(placeVal: String?, minTempData: String?, maxTempData: String?) {
+    override fun handleIntentData (
+        placeVal: WeatherApiResponseModel?,
+        minTempData: WeatherApiResponseModel?,
+        maxTempData: WeatherApiResponseModel?
+    ) {
         val detailData = repository.parseWeatherData(placeVal, minTempData, maxTempData)
 
         if (detailData == null) {
