@@ -6,7 +6,7 @@ import com.example.weatherappkotlin.data.model.PlaceModel
 // 天気情報取得APIキー
 val WEATHER_API_KEY: String? = WEATHER_API_KEY
 // URL
-const val MAIN_URL = "https://api.openweathermap.org/data/2.5/weather?appid="
+val MAIN_URL = "https://api.openweathermap.org/data/2.5/"
 
 val PLACE_LIST = listOf(
     PlaceModel("東京", "tokyo"),

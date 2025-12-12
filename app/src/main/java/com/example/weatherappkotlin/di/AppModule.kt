@@ -1,7 +1,7 @@
 package com.example.weatherappkotlin.di
 
 import com.example.weatherappkotlin.data.repository.WeatherApiService
-import com.example.weatherappkotlin.data.repository.WeatherRepository
+import com.example.weatherappkotlin.util.MAIN_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,7 +10,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
 var json = Json {
@@ -27,7 +26,7 @@ object AppModule {
     @Provides
     fun providerRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl(MAIN_URL)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
